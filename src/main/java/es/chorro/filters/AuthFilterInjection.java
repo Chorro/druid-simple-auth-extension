@@ -26,6 +26,7 @@ public class AuthFilterInjection implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         // Inject implementation of "AuthorizationInfo" interface as a request attribute
         servletRequest.setAttribute(AuthConfig.DRUID_AUTH_TOKEN, new SimpleDatasourcesAuthLogic(datasources));
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     public void destroy() {}
